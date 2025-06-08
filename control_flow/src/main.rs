@@ -19,10 +19,10 @@ fn main() {
             println!("This is an inner loop.");
             break 'outer; // Breaks out of the outer loop
         }
-        println!("This line will not be printed because we broke out of the outer loop.");
+        // println!("This line will not be printed because we broke out of the outer loop.");
     }
 
-    let mut a = loop {
+    let a = loop {
         break 42; // This loop will break and return 42
     };
     println!("The value of a is: {}", a);

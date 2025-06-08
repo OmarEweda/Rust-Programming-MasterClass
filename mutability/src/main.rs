@@ -39,4 +39,16 @@ fn main() {
         println!("Immutable reference after modification: {}", ref7);
     } // Mutable reference, local_num goes out of scope here
 
+    // Dereferencing a mutable reference
+    let mut num = 20;
+    let ref8 = &mut num; // Mutable reference to num
+    let deref_num = *ref8; // Dereference the mutable reference
+    *ref8 += 10; // Dereference and modify the value
+    println!("Modified num through mutable reference: {}", num);
+    println!("Dereferenced value: {}", deref_num);
+
+    let mut vec_1 = vec![1, 2, 3];
+    let ref9 = &mut vec_1; // Mutable reference to vec_1
+    let deref_copy = ref9.clone();
+    println!("Dereferenced copy of vec_1: {:?}", deref_copy);
 }
