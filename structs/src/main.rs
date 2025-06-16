@@ -11,6 +11,52 @@ struct Car {
     price: f32,
 }
 
+impl Car {
+    // Associated functions (not tied to an instance)
+    // These functions are called using the struct name, like Car::function_name()
+    fn new(name: String, year: u32) -> Self {
+        Car {
+            owner: name,
+            year: year,
+            fuel_level: 0.0,
+            price: 0.0,
+        }
+    }
+    // Static method to calculate monthly insurance
+    fn monthly_insurance() -> u32 {
+        123
+    }
+
+    // Instance methods (tied to an instance of the struct)
+    fn selling_price(&self) -> f32 {
+        self.price + Car::monthly_insurance() as f32
+    }
+
+    fn display_car_info(&self) {
+        println!("Car Owner: {}", self.owner);
+        println!("Year: {}", self.year);
+        println!("Fuel Level: {}%", self.fuel_level);
+        println!("Price: ${:.2}", self.price);
+    }
+
+    fn fuel_car(&mut self, amount: f32) {
+        if amount > 0.0 {
+            self.fuel_level += amount;
+            println!(
+                "Fueled {} liters. New fuel level: {}%",
+                amount, self.fuel_level
+            );
+        } else {
+            println!("Invalid fuel amount: {}", amount);
+        }
+    }
+
+    fn sell_car(&mut self, new_owner: String) {
+        self.owner = new_owner;
+        println!("Car sold to: {}", self.owner);
+    }
+}
+
 fn main() {
     let mut my_car = Car {
         owner: String::from("Omar"),
@@ -28,12 +74,21 @@ fn main() {
     let _car_fuel_level = my_car.fuel_level;
     let _car_price = my_car.price;
 
-    my_car.fuel_level = 80.0; // Update fuel level
+    my_car.fuel_level = 50.0; // Update fuel level
+
+    my_car.display_car_info(); // Display car information
+    my_car.fuel_car(20.0); // Fuel the car
+    my_car.display_car_info(); // Display updated car information
+    my_car.sell_car(String::from("John")); // Sell the car to a new owner
+    my_car.display_car_info(); // Display updated car information after sale
 
     let another_car = Car {
         owner: String::from("Alice"),
-        ..my_car
+        year: my_car.year,
+        fuel_level: my_car.fuel_level,
+        price: my_car.price,
     };
+    another_car.display_car_info(); // Display info of another car
 
     // Tuple struct
     struct Point_2D(f32, f32);

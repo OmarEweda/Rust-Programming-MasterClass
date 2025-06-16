@@ -16,10 +16,11 @@ fn main() {
     // Uncommenting the above line would result in a compilation error
     println!("Value of b: {}", b);
 
-    // Assigning of references 
+    // Assigning of references
     let mut num = 20;
+    let mut num2 = 30;
     let ref_num: &i32 = &num; // Immutable reference
-    let mut_ref_num: &mut i32 = &mut num; // Mutable reference
+    let mut_ref_num: &mut i32 = &mut num2; // Mutable reference
     println!("Value of ref_num: {}", ref_num);
     println!("Value of mut_ref_num before change: {}", mut_ref_num);
     *mut_ref_num += 5; // Changing the value through mutable reference
